@@ -62,6 +62,7 @@ void insSortPatries(party* parties, int n) {
 	}
 }
 
+/*
 int main() {
 	FILE* votes = fopen("5_vote.txt", "r");
 	char temp[20];
@@ -82,3 +83,4 @@ int main() {
 	
 	return 0;
 }
+*/
