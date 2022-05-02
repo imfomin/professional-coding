@@ -1,5 +1,6 @@
 #pragma once
 
+// 2_str_start.cpp
 int strlen_a(char* str, int strSize);
 char* strcat_a(char* part1, int part1Size, char* part2, int part2Size);
 char* strcpy_a(char* _copy, int copySize, char* origin, int originSize);
