@@ -1,20 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <limits>
-
-const int STRING_SIZE = 1024;
-
-bool isstr(char* str, int maxSize) {
-	for (int i = 0; i < maxSize; i++) {
-		if (!str[i]) return true;
-	}
-
-	return false;
-}
+#include "const.h"
 
 int strlen_a(char* str, int strSize) {
-	if (!isstr(str, strSize)) return strSize;
-
 	int len = 0;
 	while (*str++) len++;
 
@@ -22,7 +11,7 @@ int strlen_a(char* str, int strSize) {
 }
 
 char* strcat_a(char* part1, int part1Size, char* part2, int part2Size) {
-	if (!isstr(part1, part1Size) || !isstr(part2, part2Size) || strlen_a(part1, part1Size) + strlen_a(part2, part2Size) >= part1Size) {
+	if (strlen_a(part1, part1Size) + strlen_a(part2, part2Size) >= part1Size) {
 		return NULL;
 	}
 
@@ -36,7 +25,7 @@ char* strcat_a(char* part1, int part1Size, char* part2, int part2Size) {
 }
 
 char* strcpy_a(char* _copy, int copySize, char* origin, int originSize) {
-	if (!isstr(origin, originSize) || strlen_a(origin, originSize) >= copySize) return NULL;
+	if (strlen_a(origin, originSize) >= copySize) return NULL;
 
 	char* p_beg = _copy;
 
@@ -47,8 +36,6 @@ char* strcpy_a(char* _copy, int copySize, char* origin, int originSize) {
 }
 
 char* strchr_a(char* str, int strSize, char chr) {
-	if (!isstr(str, strSize)) return NULL;
-
 	while (*str) {
 		if (*str == chr) return str;
 		str++;
@@ -77,8 +64,6 @@ char* strstr_a(char* str, int strSize, char* substr, int subSize) {
 }
 
 int strcmp_a(char* str1, int str1Size, char* str2, int str2Size) {
-	if (!isstr(str1, str1Size) || !isstr(str2, str2Size)) return 512;
-
 	while (*str1 && *str2 && *str1 == *str2) {
 		str1++; str2++;
 	}
