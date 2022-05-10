@@ -151,7 +151,7 @@ void brushSort(int* arr, int n, int* seq, int t) {
 	bubbleSort(arr, n);
 }
 
-void choiceSort(int* arr, int n) {
+void minSort(int* arr, int n) {
 	int k, t;
 	for (int i = 0; i < n; i++) {
 		k = i;
@@ -162,58 +162,149 @@ void choiceSort(int* arr, int n) {
 		arr[i] = arr[k];
 		arr[k] = t;
 
-		printIntArr(arr, n);
+		// printIntArr(arr, n);
 	}
 }
 
-/*int Isqrt(int n) {
+int Isqrt(int n) {
 	int pr = 0;
-	for (int i = 1; i < n; i++) {
+	for (int i = 1; i <= n; i++) {
 		if (i * i > n) return pr;
-		pr = i;
+		pr++;
 	}
 
 	return 0;
 }
 
-int blockmin(int* arr, int n, int lft, int rght) {
-	int j = lft;
-	for (int i = lft + 1; i <= rght && i < n; i++) {
-		if (arr[i] < arr[j]) j = i;
-	}
-
-	return j;
-}
-
-struct local_min {
+struct lclmin {
 	int value;
 	int global_index;
 };
 
-int min(local_min* arr, int n) {
-	int k = 0;
-	for (int i = 1; i < n; i++) {
-		if (arr[i].value < arr[k].value) k = i;
+int min(int* arr, int n, int lft, int rght, int& index) {
+	int value = arr[lft];
+	index = lft;
+	for (int i = lft + 1; i < rght && i < n; i++) {
+		if (arr[i] < value) {
+			value = arr[i];
+			index = i;
+		}
 	}
-	return k;
+
+	return value;
 }
 
-void sqChoiceSort(int* arr, int n) {
-	int p = Isqrt(n), q = p;
-	if (p * p != n) q++;
+void min(lclmin* arr, int n, int& index) {
+	int val = arr[0].value;
+	index = 0;
+	for (int i = 1; i < n; i++) {
+		if (arr[i].value < val) {
+			val = arr[i].value;
+			index = i;
+		}
+	}
+}
 
-	local_min* mins = new local_min[q];
+void sqminSort(int* arr, int n) {
+	int p = Isqrt(n);
+	int q = p * p == n ? p : p + 1;
+	int i, blockMinInd, minOfMinsInd;
+
+	lclmin* mins = new lclmin[q];
 	int* sorted = new int[n];
-	int k, t;
 
+	for (i = 0; i < q; i++) {
+		mins[i].value = min(arr, n, i * p, (i + 1) * p, blockMinInd);
+		mins[i].global_index = blockMinInd;
+	}
 
+	for (i = 0; i < n; i++) {
+		min(mins, q, minOfMinsInd);
+		sorted[i] = mins[minOfMinsInd].value;
+
+		arr[mins[minOfMinsInd].global_index] = INT_MAX;
+
+		mins[minOfMinsInd].value = min(arr, n, minOfMinsInd * p, (minOfMinsInd + 1) * p, blockMinInd);
+		mins[minOfMinsInd].global_index = blockMinInd;
+
+		// printIntArr(arr, n);
+		// printIntArr(sorted, i + 1);
+	}
+
+	copyArray(arr, sorted, n);
 
 	delete[] mins;
 	delete[] sorted;
-}*/
+}
+
+void merge(int* a, int n, int* b, int m, int* c) {
+	int i = 0, j = 0, k = 0;
+	while (i < n && j < m) {
+		if (a[i] < b[j]) {
+			c[k] = a[i]; i++;
+		}
+		else {
+			c[k] = b[j]; j++;
+		}
+		k++;
+	}
+
+	if (i < n) {
+		copyArray(&c[k], &a[i], n + m - k);
+	}
+	if (j < m) {
+		copyArray(&c[k], &b[j], n + m - k);
+	}
+}
+
+void mergeSort(int* arr, int lft, int rght) {
+	if (lft >= rght) {
+		// printIntArr(arr, 10);
+		return;
+	}
+	int mid = (lft + rght) / 2;
+	mergeSort(arr, lft, mid);
+	mergeSort(arr, mid + 1, rght);
+
+	int* b = new int[rght - lft + 1];
+	merge(&arr[lft], mid - lft + 1, &arr[mid + 1], rght - mid, b);
+	copyArray(&arr[lft], b, rght - lft + 1);
+	delete[] b;
+
+	printIntArr(arr, 10);
+}
+
+void nat2MergeSort(int* arr, int n) {
+	int f = 0, k, i, j;
+	int* b = new int[n];
+	while (!f) {
+		f = 1; k = 0;
+		while (k < n) {
+			i = k;
+			while (i < n - 1 && arr[i] <= arr[i + 1]) i++;
+			j = i + 1;
+			while (j < n - 1 && arr[j] <= arr[j + 1]) j++;
+
+			if (i < n - 1) {
+				merge(&arr[k], i - k + 1, &arr[i + 1], j - i, &b[k]);
+				f = 0; k = j + 1;
+			}
+			else {
+				copyArray(&b[k], &arr[k], n - k);
+				k = n;
+			}
+		}
+
+		copyArray(arr, b, n);
+
+		printIntArr(arr, n);
+	}
+
+	delete[] b;
+}
 
 int main() {
-	int a[10] = { 13, 7, 8, 12, 4, 10, 1, 21, 9, 2 };
+	int a[10] = { 3, 9, 4, 4, 8, 5, 12, 18, 17, 6};
 	printIntArr(a, 10);
 	int help1[3] = { 9, 3, 1 };
 	int help2[4] = { 7, 5, 3, 2 };
@@ -224,8 +315,10 @@ int main() {
 	// qSort_r(a, 0, 9);
 	// qSort_i(a, 10);
 	// brushSort(a, 10, help2, 4);
-	// choiceSort(a, 10);
-	// !!!!!!!sqChoiceSort(a, 10);
+	// minSort(a, 10);
+	// sqminSort(a, 10);
+	// mergeSort(a, 0, 9);
+	nat2MergeSort(a, 10);
 
 	printIntArr(a, 10);
 

@@ -8,6 +8,7 @@ void printMatrix(int** matrix, int n, int m);
 void deleteMatrix(int** matrix, int rows);
 int** prodMatrix(int** nm_Mat, int** mk_Mat, int n, int m, int k);
 void copyMatrix(int** Destination, int** Source, int n, int m);
+void copyArray(int* Destination, int* Source, int n);
 
 // 3_reverse_n_delete.cpp
 char* strrpl(char* origin, char* rplmnt, int begin);

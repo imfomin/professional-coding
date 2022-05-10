@@ -62,3 +62,9 @@ void copyMatrix(int** Destination, int** Source, int n, int m) {
 		}
 	}
 }
+
+void copyArray(int* Destination, int* Source, int n) {
+	for (int i = 0; i < n; i++) {
+		Destination[i] = Source[i];
+	}
+}
