@@ -271,7 +271,7 @@ void mergeSort(int* arr, int lft, int rght) {
 	copyArray(&arr[lft], b, rght - lft + 1);
 	delete[] b;
 
-	printIntArr(arr, 10);
+	// printIntArr(arr, 10);
 }
 
 void nat2MergeSort(int* arr, int n) {
@@ -297,7 +297,7 @@ void nat2MergeSort(int* arr, int n) {
 
 		copyArray(arr, b, n);
 
-		printIntArr(arr, n);
+		// printIntArr(arr, n);
 	}
 
 	delete[] b;
