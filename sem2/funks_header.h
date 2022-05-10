@@ -15,3 +15,6 @@ char* strrpl(char* origin, char* rplmnt, int begin);
 
 // 6_files.cpp
 int printFile(char* fname);
+
+// 8_sort.cpp
+int Isqrt(int n);
