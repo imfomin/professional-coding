@@ -1,6 +1,7 @@
 #pragma once
 
 // funks.cpp
+void scanfArr(int* arr, int n);
 void printIntArr(int* arr, int arrSize);
 int** newMatrix(int n, int m);
 void scanfMatrix(int** matrix, int n, int m);
@@ -18,3 +19,4 @@ int printFile(char* fname);
 
 // 8_sort.cpp
 int Isqrt(int n);
+void nat2MergeSort(int* arr, int n);

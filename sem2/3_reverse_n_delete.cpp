@@ -4,6 +4,7 @@
 #include <string.h>
 #include "const.h"
 
+/* переворачивает строку */
 char* strobr(char* str) {
 	int len = strlen(str);
 	int hlen = len / 2;
@@ -18,6 +19,7 @@ char* strobr(char* str) {
 	return str;
 }
 
+/* удал€ет с указанной позиции (begin) count символов в строке */
 char* strdel(char* str, int begin, int count) {
 	int len = strlen(str);
 
@@ -28,6 +30,7 @@ char* strdel(char* str, int begin, int count) {
 	return str;
 }
 
+/* вставл€ет в origin строку rplmet с указанной позиции (с заменой) */
 char* strrpl(char* origin, char* rplmnt, int begin) {
 	for (int i = begin, j = 0; rplmnt[j]; i++, j++) {
 		origin[i] = rplmnt[j];
@@ -36,6 +39,9 @@ char* strrpl(char* origin, char* rplmnt, int begin) {
 	return origin;
 }
 
+/* на вход подаЄтс€ последовательность слов, разделЄнных одним или несколькими пробелами;
+слова чЄтной длины удал€ютс€; нечЄтной - переворачиваютс€;
+количество пробелов не мен€етс€ */
 char* f32(char* text) {
 	char word[WORD_SIZE];
 	int k = 0;

@@ -1,7 +1,26 @@
 #include <stdio.h>
 #include "funks_header.h"
 #include <limits>
+#include <clocale>
 
+const int ARR_SIZE = 10;
+
+void printSorts() {
+	int i = 1;
+	printf("%d. простые вставки\n", i++);
+	printf("%d. сортировка Шелла\n", i++);
+	printf("%d. пузырьковая сортировка\n", i++);
+	printf("%d. рекурсивная быстрая сортировка\n", i++);
+	printf("%d. нерекурсивная быстрая сортировка\n", i++);
+	printf("%d. сортировка расчёской\n", i++);
+	printf("%d. сортировка простым выбором\n", i++);
+	printf("%d. сортировка квадратичным выбором\n", i++);
+	printf("%d. сортировка слиянием\n", i++);
+	printf("%d. сортировка естественным двухпутевым слиянием\n", i++);
+	printf("%d. выход\n", i++);
+}
+
+/* простые вставки */ // O(n^2)
 void insSort(int* arr, int n) {
 	int temp, j;
 	for (int i = 1; i < n; i++) {
@@ -13,10 +32,25 @@ void insSort(int* arr, int n) {
 		}
 		arr[j + 1] = temp;
 
-		// printIntArr(arr, n);
+		printIntArr(arr, n);
 	}
 }
 
+/* ввод последовательности для сортировки Шелла */
+int scanfShellSortSeq(int* seq, int maxNum) {
+	printf("введите последовательность для сортировки (признак конца ввода: 1):\n");
+	
+	int i = 0;
+	scanf_s("%d", &seq[i]);
+	while (seq[i] != 1 && i < maxNum) {
+		i++;
+		scanf_s("%d", &seq[i]);
+	}
+
+	return seq[i] == 1 ? i + 1 : 0;
+}
+
+/* сортировка Шелла */ // O(n * log(n)^2) - для последовательности 2^p * 3^q
 void shellSort(int* arr, int n, int* seq, int t) {
 	int h, b, j;
 	for (int s = 0; s < t; s++) {
@@ -31,10 +65,11 @@ void shellSort(int* arr, int n, int* seq, int t) {
 			arr[j + h] = b;
 		}
 
-		// printIntArr(arr, n);
+		printIntArr(arr, n);
 	}
 }
 
+/* пузырьковая сортировка */ // O(n^2)
 void bubbleSort(int* arr, int n) {
 	int B = n, t;
 	while (B) {
@@ -50,15 +85,13 @@ void bubbleSort(int* arr, int n) {
 		}
 		B = t;
 
-		// printIntArr(arr, n);
+		printIntArr(arr, n);
 	}
 }
 
+/* рекурсивная быстрая сортировка */ // O(n * log(n))
 void qSort_r(int* arr, int lft, int rght) {
-	if (lft >= rght) {
-		// printIntArr(arr, 10);
-		return;
-	}
+	if (lft >= rght) return;
 
 	int i = lft, j = rght;
 	int x = arr[(i + j) / 2];
@@ -66,20 +99,23 @@ void qSort_r(int* arr, int lft, int rght) {
 
 	while (i <= j) {
 		while (arr[i] < x && i <= rght) i++;
-		while (arr[j] >= x && j >= lft) j--;
+		while (arr[j] > x && j >= lft) j--;
 
 		if (i < j) {
-			t = arr[j];
-			arr[j] = arr[i];
-			arr[i] = t;
+			if (arr[i] != arr[j]) {
+				t = arr[j];
+				arr[j] = arr[i];
+				arr[i] = t;
+			}
+			
 			i++; j--;
+		}
+		else if (i == j) {
+			i++;
 		}
 	}
 
-	// printIntArr(arr, 10);
-
-	if (i == lft && j < i) i++;
-	if (j == rght && i > j) j--;
+	printIntArr(arr, ARR_SIZE);
 
 	if (lft <= j) qSort_r(arr, lft, j);
 	if (i <= rght) qSort_r(arr, i, rght);
@@ -90,6 +126,7 @@ struct edges {
 	int right;
 };
 
+/* нерекурсивная быстрая сортировка */ // O(n* log(n))
 void qSort_i(int* arr, int n) {
 	edges* b = new edges[n];
 	int k = 0;
@@ -100,26 +137,30 @@ void qSort_i(int* arr, int n) {
 	while (k >= 0) {
 		lft = b[k].left; rght = b[k].right;
 		k--;
+		if (lft >= rght) continue;
 
 		i = lft, j = rght;
 		x = arr[(i + j) / 2];
 
 		while (i <= j) {
 			while (arr[i] < x && i <= rght) i++;
-			while (arr[j] >= x && j >= lft) j--;
+			while (arr[j] > x && j >= lft) j--;
 
 			if (i < j) {
-				t = arr[j];
-				arr[j] = arr[i];
-				arr[i] = t;
+				if (arr[i] != arr[j]) {
+					t = arr[j];
+					arr[j] = arr[i];
+					arr[i] = t;
+				}
+
 				i++; j--;
+			}
+			else if (i == j) {
+				i++;
 			}
 		}
 
-		// printIntArr(arr, n);
-
-		if (i == lft && j < i) i++;
-		if (j == rght && i > j) j--;
+		printIntArr(arr, n);
 
 		if (lft <= j) {
 			k++;
@@ -134,6 +175,21 @@ void qSort_i(int* arr, int n) {
 	delete[] b;
 }
 
+/* ввод последовательности для сортировки расчёской */
+int scanfBrushSortSeq(int* seq, int maxNum) {
+	printf("введите последовательность для сортировки (признак конца ввода: 0):\n");
+
+	int i = 0;
+	scanf_s("%d", &seq[i]);
+	while (seq[i] != 0 && i < maxNum) {
+		i++;
+		scanf_s("%d", &seq[i]);
+	}
+
+	return i;
+}
+
+/* сортировка расчёской */ // O(n * log(n)^2) - для последовательности 2^p * 3^q
 void brushSort(int* arr, int n, int* seq, int t) {
 	int h, temp;
 	for (int s = 0; s < t; s++) {
@@ -148,9 +204,12 @@ void brushSort(int* arr, int n, int* seq, int t) {
 
 		printIntArr(arr, n);
 	}
+
+	printf("------------\n");
 	bubbleSort(arr, n);
 }
 
+/* сортировка простым выбором */ // O(n^2)
 void minSort(int* arr, int n) {
 	int k, t;
 	for (int i = 0; i < n; i++) {
@@ -162,10 +221,11 @@ void minSort(int* arr, int n) {
 		arr[i] = arr[k];
 		arr[k] = t;
 
-		// printIntArr(arr, n);
+		printIntArr(arr, n);
 	}
 }
 
+/* возвращает floor(sqrt(n)) */
 int Isqrt(int n) {
 	int pr = 0;
 	for (int i = 1; i <= n; i++) {
@@ -181,6 +241,7 @@ struct lclmin {
 	int global_index;
 };
 
+/* миннимум в массиве между индексами lft и rght */
 int min(int* arr, int n, int lft, int rght, int& index) {
 	int value = arr[lft];
 	index = lft;
@@ -194,6 +255,7 @@ int min(int* arr, int n, int lft, int rght, int& index) {
 	return value;
 }
 
+/* минимум в массиве типа lclmin; критерий: lclmin.value */
 void min(lclmin* arr, int n, int& index) {
 	int val = arr[0].value;
 	index = 0;
@@ -205,6 +267,7 @@ void min(lclmin* arr, int n, int& index) {
 	}
 }
 
+/* сортировка квадратичным выбором */ // O(n^(3 / 2))
 void sqminSort(int* arr, int n) {
 	int p = Isqrt(n);
 	int q = p * p == n ? p : p + 1;
@@ -227,8 +290,9 @@ void sqminSort(int* arr, int n) {
 		mins[minOfMinsInd].value = min(arr, n, minOfMinsInd * p, (minOfMinsInd + 1) * p, blockMinInd);
 		mins[minOfMinsInd].global_index = blockMinInd;
 
-		// printIntArr(arr, n);
-		// printIntArr(sorted, i + 1);
+		printIntArr(arr, n);
+		printIntArr(sorted, i + 1);
+		printf("\n");
 	}
 
 	copyArray(arr, sorted, n);
@@ -237,6 +301,7 @@ void sqminSort(int* arr, int n) {
 	delete[] sorted;
 }
 
+/* слияние массивов */
 void merge(int* a, int n, int* b, int m, int* c) {
 	int i = 0, j = 0, k = 0;
 	while (i < n && j < m) {
@@ -257,11 +322,10 @@ void merge(int* a, int n, int* b, int m, int* c) {
 	}
 }
 
+/* сортировка слиянием */ // O(n* log(n))
 void mergeSort(int* arr, int lft, int rght) {
-	if (lft >= rght) {
-		// printIntArr(arr, 10);
-		return;
-	}
+	if (lft >= rght) return;
+
 	int mid = (lft + rght) / 2;
 	mergeSort(arr, lft, mid);
 	mergeSort(arr, mid + 1, rght);
@@ -271,9 +335,10 @@ void mergeSort(int* arr, int lft, int rght) {
 	copyArray(&arr[lft], b, rght - lft + 1);
 	delete[] b;
 
-	// printIntArr(arr, 10);
+	printIntArr(arr, ARR_SIZE);
 }
 
+/* сортировка естественным двухпутевым слиянием */ // O(n* log(n))
 void nat2MergeSort(int* arr, int n) {
 	int f = 0, k, i, j;
 	int* b = new int[n];
@@ -297,30 +362,148 @@ void nat2MergeSort(int* arr, int n) {
 
 		copyArray(arr, b, n);
 
-		// printIntArr(arr, n);
+		printIntArr(arr, n);
 	}
 
 	delete[] b;
 }
 
+/*
 int main() {
-	int a[10] = { 3, 9, 4, 4, 8, 5, 12, 18, 17, 6};
-	printIntArr(a, 10);
-	int help1[3] = { 9, 3, 1 };
-	int help2[4] = { 7, 5, 3, 2 };
+	setlocale(LC_ALL, "");
 
-	// insSort(a, 10);
-	// shellSort(a, 10, help1, 3);
-	// bubbleSort(a, 10);
-	// qSort_r(a, 0, 9);
-	// qSort_i(a, 10);
-	// brushSort(a, 10, help2, 4);
-	// minSort(a, 10);
-	// sqminSort(a, 10);
-	// mergeSort(a, 0, 9);
-	nat2MergeSort(a, 10);
+	int n = ARR_SIZE;
+	// printf("number of elements: "); scanf_s("%d", &n);
 
-	printIntArr(a, 10);
+	int* a = new int[n];
+	printf("fill the array (%d elements)\n", n); scanfArr(a, n);
+	int* b = new int[n];
+
+	bool cycle = true;
+	int nSort, x;
+
+	printSorts();
+
+	while (cycle) {
+		printf("номер операции: "); scanf_s("%d", &nSort);
+		printf("\n");
+
+		switch (nSort) {
+		case 1: {
+			copyArray(b, a, n);
+
+			printf("source: "); printIntArr(b, n);
+			printf("\n");
+			insSort(b, n);
+			printf("\nresult: "); printIntArr(b, n);
+			break;
+		}
+		case 2: {
+			int* c = new int[n];
+			int t = scanfShellSortSeq(c, n);
+
+			copyArray(b, a, n);
+
+			printf("\nsource: "); printIntArr(b, n);
+			printf("\n");
+			shellSort(b, n, c, t);
+			printf("\nresult: "); printIntArr(b, n);
+
+			delete[] c;
+			break;
+		}
+		case 3: {
+			copyArray(b, a, n);
+
+			printf("source: "); printIntArr(b, n);
+			printf("\n");
+			bubbleSort(b, n);
+			printf("\nresult: "); printIntArr(b, n);
+			break;
+		}
+		case 4: {
+			copyArray(b, a, n);
+
+			printf("source: "); printIntArr(b, n);
+			printf("\n");
+			qSort_r(b, 0, n - 1);
+			printf("\nresult: "); printIntArr(b, n);
+			break;
+		}
+		case 5: {
+			copyArray(b, a, n);
+
+			printf("source: "); printIntArr(b, n);
+			printf("\n");
+			qSort_i(b, n);
+			printf("\nresult: "); printIntArr(b, n);
+			break;
+		}
+		case 6: {
+			int* c = new int[n];
+			int t = scanfBrushSortSeq(c, n);
+
+			copyArray(b, a, n);
+
+			printf("\nsource: "); printIntArr(b, n);
+			printf("\n");
+			brushSort(b, n, c, t);
+			printf("\nresult: "); printIntArr(b, n);
+
+			delete[] c;
+			break;
+		}
+		case 7: {
+			copyArray(b, a, n);
+
+			printf("source: "); printIntArr(b, n);
+			printf("\n");
+			minSort(b, n);
+			printf("\nresult: "); printIntArr(b, n);
+			break;
+		}
+		case 8: {
+			copyArray(b, a, n);
+
+			printf("source: "); printIntArr(b, n);
+			printf("\n");
+			sqminSort(b, n);
+			printf("\nresult: "); printIntArr(b, n);
+			break;
+		}
+		case 9: {
+			copyArray(b, a, n);
+
+			printf("source: "); printIntArr(b, n);
+			printf("\n");
+			mergeSort(b, 0, n - 1);
+			printf("\nresult: "); printIntArr(b, n);
+			break;
+		}
+		case 10: {
+			copyArray(b, a, n);
+
+			printf("source: "); printIntArr(b, n);
+			printf("\n");
+			nat2MergeSort(b, n);
+			printf("\nresult: "); printIntArr(b, n);
+			break;
+		}
+		case 11: {
+			cycle = false;
+			break;
+		}
+		default: {
+			printf("something went wrong...\n");
+			break;
+		}
+		}
+	}
+
+	delete[] a;
+	delete[] b;
 
 	return 0;
+	
 }
+*/

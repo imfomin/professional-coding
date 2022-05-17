@@ -1,12 +1,16 @@
 ﻿#include <stdio.h>
 #include "funks_header.h"
 
+/* возвращает true если x степеьню числа base, иначе false */
 bool ispow(int x, int base) {
 	if (x > 0) while (!(x % base)) x /= base;
 
 	return x == 1;
 }
 
+/* заполняет массив result числами меньшими n,
+при делении на которые число N дает остаток в виде степени тройки;
+возвращает количество таких чисел */
 int f11(int* result, int N) {
 	int curpos = 0;
 	for (int i = 1; i < N; i++) {
@@ -17,6 +21,7 @@ int f11(int* result, int N) {
 	return curpos;
 }
 
+/* вовзращает НОД(x, y) // применяется алгоритм Евклида */
 int gcd(int x, int y) {
 	while (x && y) {
 		if (x > y) x %= y;
@@ -26,6 +31,8 @@ int gcd(int x, int y) {
 	return x + y;
 }
 
+/* находит все пары взаимно простых чисел, сумма которых равна N;
+result заполняется первыми элеменатми пар; возвращает количество таких пар */
 int f12(int* result, int N) {
 	int hN = N / 2, curpos = 0;
 	for (int i = 1; i <= hN; i++) {
@@ -36,6 +43,7 @@ int f12(int* result, int N) {
 	return curpos;
 }
 
+/* возвращает след квадратной матрицы n*n */
 int trace(int** sqMatrix, int n) {
 	int result = 0;
 	for (int i = 0; i < n; i++) {
@@ -45,6 +53,7 @@ int trace(int** sqMatrix, int n) {
 	return result;
 }
 
+/* возвращает вектор длины maxPower, составленный из следов степеней квадратной матрицы */
 int* f13_crVector(int** sqMatrix, int n, int maxPower) {
 	int* vector = new int[maxPower];
 	int** help;
@@ -54,7 +63,7 @@ int* f13_crVector(int** sqMatrix, int n, int maxPower) {
 	vector[i++] = trace(sqMatrix, n);
 	copyMatrix(sqMatrixPow, sqMatrix, n, n);
 
-	for (i; i < maxPower; i++) {
+	for (; i < maxPower; i++) { // i = 1
 		help = prodMatrix(sqMatrixPow, sqMatrix, n, n, n);
 		vector[i] = trace(help, n);
 		copyMatrix(sqMatrixPow, help, n, n);

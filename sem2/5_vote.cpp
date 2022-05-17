@@ -9,6 +9,8 @@ struct party {
 	int voices;
 };
 
+/* возвращает число, записанное в строке
+(читается только первая последовательность цифр) */
 int strToInt(char* str) {
 	int i, res = 0;
 	for (i = 0; str[i] >= '0' && str[i] <= '9'; i++) {
@@ -18,6 +20,8 @@ int strToInt(char* str) {
 	return res;
 }
 
+/* возвращает номер партии (по имени) в массиве партий
+и -1, если такой нет */
 int party_in(char* party_name, party* parties, int n) {
 	for (int i = 0; i < n; i++) {
 		if (!strcmp(parties[i].name, party_name)) return i;
@@ -26,6 +30,8 @@ int party_in(char* party_name, party* parties, int n) {
 	return -1;
 }
 
+/* функция считывает первые несколько строк из файла и записывает данные в массив партий;
+ведётся подсчёт голосов */
 int readVotes(party* parties, FILE* votes, int number_of_votes) {
 	char party_name[80];
 	int difParties = 0;
@@ -49,6 +55,7 @@ int readVotes(party* parties, FILE* votes, int number_of_votes) {
 	return difParties;
 }
 
+/* сортировка массива партий по убыванию голосов (простые вставки )*/
 void insSortPatries(party* parties, int n) {
 	party b; int j;
 	for (int i = 1; i < n; i++) {

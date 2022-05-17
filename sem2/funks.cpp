@@ -1,5 +1,13 @@
 #include <stdio.h>
 
+/* ввод массива с клавиатуры */
+void scanfArr(int* arr, int n) {
+	for (int i = 0; i < n; i++) {
+		scanf_s("%d", &arr[i]);
+	}
+}
+
+/* печать массива */
 void printIntArr(int* arr, int arrSize) {
 	for (int i = 0; i < arrSize; i++) {
 		printf("%d ", arr[i]);
@@ -7,6 +15,7 @@ void printIntArr(int* arr, int arrSize) {
 	printf("\n");
 }
 
+/* выделение памяти для матрицы n*m */
 int** newMatrix(int n, int m) {
 	int** matrix = new int* [n];
 	for (int i = 0; i < n; i++){
@@ -16,6 +25,7 @@ int** newMatrix(int n, int m) {
 	return matrix;
 }
 
+/* заполнение целочисленной матрицы с клавиатуры */
 void scanfMatrix(int** matrix, int n, int m) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
@@ -24,6 +34,7 @@ void scanfMatrix(int** matrix, int n, int m) {
 	}
 }
 
+/* печать матрицы */
 void printMatrix(int** matrix, int n, int m) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
@@ -33,6 +44,7 @@ void printMatrix(int** matrix, int n, int m) {
 	}
 }
 
+/* освобождение памяти матрицы */
 void deleteMatrix(int** matrix, int rows) {
 	for (int i = 0; i < rows; i++) {
 		delete[] matrix[i];
@@ -40,6 +52,7 @@ void deleteMatrix(int** matrix, int rows) {
 	delete[] matrix;
 }
 
+/* произведение матриц */
 int** prodMatrix(int** nm_Mat, int** mk_Mat, int n, int m, int k) {
 	int** nk_Mat = newMatrix(n, k);
 
@@ -55,6 +68,7 @@ int** prodMatrix(int** nm_Mat, int** mk_Mat, int n, int m, int k) {
 	return nk_Mat;
 }
 
+/* копирование матрицы */
 void copyMatrix(int** Destination, int** Source, int n, int m) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
@@ -63,6 +77,7 @@ void copyMatrix(int** Destination, int** Source, int n, int m) {
 	}
 }
 
+/* копирование массива */
 void copyArray(int* Destination, int* Source, int n) {
 	for (int i = 0; i < n; i++) {
 		Destination[i] = Source[i];

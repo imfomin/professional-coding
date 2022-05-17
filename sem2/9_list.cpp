@@ -1,10 +1,26 @@
 #include <stdio.h>
+#include <clocale>
 
 struct int_unit {
 	int value;
 	int_unit* next;
 };
 
+void printLists() {
+	int i = 1;
+	printf("%d создать список\n", i++);
+	printf("%d добавить элемент в конец\n", i++);
+	printf("%d добавить элемент в начало\n", i++);
+	printf("%d добавить элемент в середину\n", i++);
+	printf("%d добавить элемент в отсортированный список\n", i++);
+	printf("%d расширить список\n", i++);
+	printf("%d найти элемент\n", i++);
+	printf("%d удалить элемент\n", i++);
+	printf("%d вставить список\n", i++);
+	printf("%d развернуть список\n", i++);
+	printf("%d напечатать список\n", i++);
+	printf("%d выход\n", i++);
+}
 
 int_unit* init(int n) {
 	int_unit* root = new int_unit;
@@ -115,7 +131,7 @@ int_unit* deleteUnit(int_unit* root, int _value) {
 	int_unit* cur = root;
 	int_unit* pr = NULL;
 
-	while (cur->value != _value && cur->next) {
+	while (cur || cur->value != _value) {
 		pr = cur;
 		cur = cur->next;
 	}
@@ -123,12 +139,12 @@ int_unit* deleteUnit(int_unit* root, int _value) {
 	if (cur->value == _value) {
 		if (cur == root) {
 			root = cur->next;
-			delete cur;
 		}
 		else {
 			pr->next = cur->next;
-			delete cur;
 		}
+
+		delete cur;
 	}
 
 	return root;
@@ -168,25 +184,107 @@ int_unit* reverse(int_unit* root) {
 	return pr;
 }
 
+int_unit*  insertSorted(int_unit* root, int _value) {
+	int_unit* cur = root;
+	int_unit* pr = cur;
+	int_unit* p = new int_unit;
+	p->value = _value;
+
+	while (cur && cur->value < _value) {
+		pr = cur;
+		cur = cur->next;
+	}
+
+	return root;
+}
+
+
 int main() {
-	int_unit* test = init(0);
-	scanfLst(test, 2);
-	int_unit* test1 = init(0);
-	scanfLst(test1, 2);
+	setlocale(LC_ALL, "");
+	bool cycle = true;
+	int nLists;
+	int n;
+	int_unit* lst = init(0);
 
-	printIntLst(test);
-	printIntLst(test1);
+	printLists();
 
-	insert(test, 2, test1);
+	while (cycle) {
+		printf("номер операции: ");  scanf_s("%d", &nLists);
 
-	printIntLst(test);
-	printIntLst(test1);
+		switch (nLists) {
+		case 1: {
+			printf("первое значение: ");  scanf_s("%d", &n);
+			deleteLst(lst);
+			lst = init(n);
+			break;
+		}
+		case 2: {
+			printf("значение: ");  scanf_s("%d", &n);
+			append(lst, n);
+			break;
+		}
+		case 3: {
+			printf("значение: "); scanf_s("%d", &n);
+			lst = appbeg(lst, n);
+			break;
+		}
+		case 4: {
+			printf("значение: "); scanf_s("%d", &n);
+			printf("значение, после которого вставится первое: "); int pr; scanf_s("%d", &pr);
+			insert(lst, pr, n);
+			break;
+		}
+		case 5: {
+			printf("значение: "); scanf_s("%d", &n);
+			insertSorted(lst, n);
+			break;
+		}
+		case 6: {
+			printf("количество значений: "); scanf_s("%d", &n);
+			scanfLst(lst, n);
+			break;
+		}
+		case 7: {
+			printf("значение: "); scanf_s("%d", &n);
+			printIntLst(search(lst, n));
+			break;
+		}
+		case 8: {
+			printf("значение: "); scanf_s("%d", &n);
+			deleteUnit(lst, n);
+			break;
+		}
+		case 9: {
+			printf("новый список: \n");
+			scanf_s("%d", &n);
+			int_unit* add = init(n);
+			scanfLst(add, n - 1);
 
-	test = reverse(test);
+			printf("значение: ");  scanf_s("%d", &n);
+			insert(lst, n, add);
 
-	printIntLst(test);
+			break;
+		}
+		case 10: {
+			lst = reverse(lst);
+			break;
+		}
+		case 11: {
+			printIntLst(lst);
+			break;
+		}
+		case 12: {
+			cycle = false;
+			break;
+		}
+		default: {
+			printf("wrong\n");
+		}
+		}
+		
+	}
 
-	deleteLst(test);
+	deleteLst(lst);
 
 	return 0;
 }

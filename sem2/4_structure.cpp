@@ -9,12 +9,14 @@ struct student {
 	int marks[4];
 };
 
+/* удаление пробелов кв конце строки */
 char* delSpaceEnd(char* str) {
 	int len = strlen(str);
 	for (int i = len - 1; str[i] == ' '; i--) str[i] = '\0';
 	return str;
 }
 
+/* заполнение массива из n студентов */
 void scanfStudent(student* destination, int n) {
 	char rawInput[STRING_SIZE];
 	int j, count;
@@ -40,6 +42,8 @@ void scanfStudent(student* destination, int n) {
 	}
 }
 
+/* возвращает true, если студент получит стипендию,
+иначе false */
 bool isPaid(student stydent) {
 	for (int i = 0; i < 4; i++) {
 		if (stydent.marks[i] != 4 && stydent.marks[i] != 5) return false;
@@ -48,6 +52,8 @@ bool isPaid(student stydent) {
 	return true;
 }
 
+/* по массиву всех n студентов заполняет массив студентов, претендующих на стипендию;
+возвращает количество таких студентов */
 int findPaidStudents(student* all, student* paid, int n) {
 	int j = 0;
 
@@ -76,7 +82,7 @@ int main() {
 		}
 	}
 	else {
-		printf("\nno one gets scholarship((...\n");
+		printf("\nno one gets scholarship\n");
 	}
 
 	delete[] allStudents;

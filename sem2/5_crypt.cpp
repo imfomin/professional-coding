@@ -3,6 +3,8 @@
 #include "funks_header.h"
 #include "const.h"
 
+/* шифрование слова 
+буква нового слова - буква старого слова + длина слова */
 char* strcrt52(char* str) {
 	char* pstr = str;
 	int len = strlen(str);
@@ -28,10 +30,15 @@ char* strcrt52(char* str) {
 	return pstr;
 }
 
+/* true - если сhr - английский символ,
+false иначе */
 bool iseng(char chr) {
 	return (chr >= 'a' && chr <= 'z') || (chr >= 'A' && chr <= 'Z');
 }
 
+/* на вход подаётся последовательность слов (слово - последовательность английсих букв), 
+разделённых одним или несколькими пробелами;
+слова шифруются фунцкией strcrt52() */
 char* f52(char* text) {
 	char word[WORD_SIZE];
 	int j = 0;

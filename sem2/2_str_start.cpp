@@ -71,6 +71,9 @@ int strcmp_a(char* str1, int str1Size, char* str2, int str2Size) {
 	return *str1 - *str2;
 }
 
+/* поиск максимума в массиве
+возвращает максимальное значение
+в index по ссылке записывается индекс максимального элемента*/
 int max(int* arr, int n, int &index) {
 	int max_value = INT_MIN;
 
@@ -84,6 +87,8 @@ int max(int* arr, int n, int &index) {
 	return max_value;
 }
 
+/* функция возвращает массив, который хранит информацию о количестве
+каждой английской буквы в строке text; регистр не имеет значения */
 int* f22(char* text) {
 	int* number_of_letter = new int[26];
 	for (int i = 0; i < 26; i++) {
@@ -100,6 +105,8 @@ int* f22(char* text) {
 	return number_of_letter;
 }
 
+/* функция возвращает массив, который хранит информацию о количестве
+каждой цифры в строке text */
 int* f23(char* text) {
 	int* number_of_digit = new int[10];
 	for (int i = 0; i < 10; i++) {
@@ -114,9 +121,12 @@ int* f23(char* text) {
 	return number_of_digit;
 }
 
+/* функция принимает массив из 10 элементов - каждый элемент хранит информацию
+о количестве соответствующей цифры;
+печатает наибольшее число составленное из данного количества имеющихся цифр */
 void joinDigitsMax(int* digits) {
 	int i;
-	for (i = 0; i < 10; i++) {
+	for (i = 1; i < 10; i++) {
 		if (digits[i]) {
 			printf("Yes\n");
 			break;
