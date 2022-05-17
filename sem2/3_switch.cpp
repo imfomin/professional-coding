@@ -3,15 +3,15 @@
 #include "const.h"
 
 void printMenu() {
-	printf("1. Enter strings\n");
-	printf("2. Count lenghts\n");
-	printf("3. Concatenate\n");
-	printf("4. Copy\n");
-	printf("5. Search for char\n");
-	printf("6. Search for substring\n");
-	printf("7. Compare\n");
-	printf("8. Print strings\n");
-	printf("9. Exit\n");
+	printf("1. Ввести строки\n");
+	printf("2. Посчитать длины\n");
+	printf("3. Конкатенация\n");
+	printf("4. Копировать\n");
+	printf("5. Найти символ\n");
+	printf("6. Найти подстроку\n");
+	printf("7. Сравнить\n");
+	printf("8. Печать строк\n");
+	printf("9. Выход\n");
 }
 
 /*
