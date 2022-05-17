@@ -7,20 +7,20 @@ const int ARR_SIZE = 10;
 
 void printSorts() {
 	int i = 1;
-	printf("%d. простые вставки\n", i++);
-	printf("%d. сортировка Шелла\n", i++);
-	printf("%d. пузырьковая сортировка\n", i++);
-	printf("%d. рекурсивная быстрая сортировка\n", i++);
-	printf("%d. нерекурсивная быстрая сортировка\n", i++);
-	printf("%d. сортировка расчёской\n", i++);
-	printf("%d. сортировка простым выбором\n", i++);
-	printf("%d. сортировка квадратичным выбором\n", i++);
-	printf("%d. сортировка слиянием\n", i++);
-	printf("%d. сортировка естественным двухпутевым слиянием\n", i++);
-	printf("%d. выход\n", i++);
+	printf("%d. ГЇГ°Г®Г±ГІГ»ГҐ ГўГ±ГІГ ГўГЄГЁ\n", i++);
+	printf("%d. Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГГҐГ«Г«Г \n", i++);
+	printf("%d. ГЇГіГ§Г»Г°ГјГЄГ®ГўГ Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГ \n", i++);
+	printf("%d. Г°ГҐГЄГіГ°Г±ГЁГўГ­Г Гї ГЎГ»Г±ГІГ°Г Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГ \n", i++);
+	printf("%d. Г­ГҐГ°ГҐГЄГіГ°Г±ГЁГўГ­Г Гї ГЎГ»Г±ГІГ°Г Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГ \n", i++);
+	printf("%d. Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  Г°Г Г±Г·ВёГ±ГЄГ®Г©\n", i++);
+	printf("%d. Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЇГ°Г®Г±ГІГ»Г¬ ГўГ»ГЎГ®Г°Г®Г¬\n", i++);
+	printf("%d. Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЄГўГ Г¤Г°Г ГІГЁГ·Г­Г»Г¬ ГўГ»ГЎГ®Г°Г®Г¬\n", i++);
+	printf("%d. Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  Г±Г«ГЁГїГ­ГЁГҐГ¬\n", i++);
+	printf("%d. Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГҐГ±ГІГҐГ±ГІГўГҐГ­Г­Г»Г¬ Г¤ГўГіГµГЇГіГІГҐГўГ»Г¬ Г±Г«ГЁГїГ­ГЁГҐГ¬\n", i++);
+	printf("%d. ГўГ»ГµГ®Г¤\n", i++);
 }
 
-/* простые вставки */ // O(n^2)
+/* ГЇГ°Г®Г±ГІГ»ГҐ ГўГ±ГІГ ГўГЄГЁ */ // O(n^2)
 void insSort(int* arr, int n) {
 	int temp, j;
 	for (int i = 1; i < n; i++) {
@@ -36,9 +36,9 @@ void insSort(int* arr, int n) {
 	}
 }
 
-/* ввод последовательности для сортировки Шелла */
+/* ГўГўГ®Г¤ ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГЁ Г¤Г«Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГЁ ГГҐГ«Г«Г  */
 int scanfShellSortSeq(int* seq, int maxNum) {
-	printf("введите последовательность для сортировки (признак конца ввода: 1):\n");
+	printf("ГўГўГҐГ¤ГЁГІГҐ ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГј Г¤Г«Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГЁ (ГЇГ°ГЁГ§Г­Г ГЄ ГЄГ®Г­Г¶Г  ГўГўГ®Г¤Г : 1):\n");
 	
 	int i = 0;
 	scanf_s("%d", &seq[i]);
@@ -50,7 +50,7 @@ int scanfShellSortSeq(int* seq, int maxNum) {
 	return seq[i] == 1 ? i + 1 : 0;
 }
 
-/* сортировка Шелла */ // O(n * log(n)^2) - для последовательности 2^p * 3^q
+/* Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГГҐГ«Г«Г  */ // O(n * log(n)^2) - Г¤Г«Гї ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГЁ 2^p * 3^q
 void shellSort(int* arr, int n, int* seq, int t) {
 	int h, b, j;
 	for (int s = 0; s < t; s++) {
@@ -69,7 +69,7 @@ void shellSort(int* arr, int n, int* seq, int t) {
 	}
 }
 
-/* пузырьковая сортировка */ // O(n^2)
+/* ГЇГіГ§Г»Г°ГјГЄГ®ГўГ Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  */ // O(n^2)
 void bubbleSort(int* arr, int n) {
 	int B = n, t;
 	while (B) {
@@ -89,7 +89,7 @@ void bubbleSort(int* arr, int n) {
 	}
 }
 
-/* рекурсивная быстрая сортировка */ // O(n * log(n))
+/* Г°ГҐГЄГіГ°Г±ГЁГўГ­Г Гї ГЎГ»Г±ГІГ°Г Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  */ // O(n * log(n))
 void qSort_r(int* arr, int lft, int rght) {
 	if (lft >= rght) return;
 
@@ -126,7 +126,7 @@ struct edges {
 	int right;
 };
 
-/* нерекурсивная быстрая сортировка */ // O(n* log(n))
+/* Г­ГҐГ°ГҐГЄГіГ°Г±ГЁГўГ­Г Гї ГЎГ»Г±ГІГ°Г Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  */ // O(n* log(n))
 void qSort_i(int* arr, int n) {
 	edges* b = new edges[n];
 	int k = 0;
@@ -175,9 +175,9 @@ void qSort_i(int* arr, int n) {
 	delete[] b;
 }
 
-/* ввод последовательности для сортировки расчёской */
+/* ГўГўГ®Г¤ ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГЁ Г¤Г«Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГЁ Г°Г Г±Г·ВёГ±ГЄГ®Г© */
 int scanfBrushSortSeq(int* seq, int maxNum) {
-	printf("введите последовательность для сортировки (признак конца ввода: 0):\n");
+	printf("ГўГўГҐГ¤ГЁГІГҐ ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГј Г¤Г«Гї Г±Г®Г°ГІГЁГ°Г®ГўГЄГЁ (ГЇГ°ГЁГ§Г­Г ГЄ ГЄГ®Г­Г¶Г  ГўГўГ®Г¤Г : 0):\n");
 
 	int i = 0;
 	scanf_s("%d", &seq[i]);
@@ -189,7 +189,7 @@ int scanfBrushSortSeq(int* seq, int maxNum) {
 	return i;
 }
 
-/* сортировка расчёской */ // O(n * log(n)^2) - для последовательности 2^p * 3^q
+/* Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  Г°Г Г±Г·ВёГ±ГЄГ®Г© */ // O(n * log(n)^2) - Г¤Г«Гї ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГЁ 2^p * 3^q
 void brushSort(int* arr, int n, int* seq, int t) {
 	int h, temp;
 	for (int s = 0; s < t; s++) {
@@ -209,7 +209,7 @@ void brushSort(int* arr, int n, int* seq, int t) {
 	bubbleSort(arr, n);
 }
 
-/* сортировка простым выбором */ // O(n^2)
+/* Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЇГ°Г®Г±ГІГ»Г¬ ГўГ»ГЎГ®Г°Г®Г¬ */ // O(n^2)
 void minSort(int* arr, int n) {
 	int k, t;
 	for (int i = 0; i < n; i++) {
@@ -225,7 +225,7 @@ void minSort(int* arr, int n) {
 	}
 }
 
-/* возвращает floor(sqrt(n)) */
+/* ГўГ®Г§ГўГ°Г Г№Г ГҐГІ floor(sqrt(n)) */
 int Isqrt(int n) {
 	int pr = 0;
 	for (int i = 1; i <= n; i++) {
@@ -241,7 +241,7 @@ struct lclmin {
 	int global_index;
 };
 
-/* миннимум в массиве между индексами lft и rght */
+/* Г¬ГЁГ­Г­ГЁГ¬ГіГ¬ Гў Г¬Г Г±Г±ГЁГўГҐ Г¬ГҐГ¦Г¤Гі ГЁГ­Г¤ГҐГЄГ±Г Г¬ГЁ lft ГЁ rght */
 int min(int* arr, int n, int lft, int rght, int& index) {
 	int value = arr[lft];
 	index = lft;
@@ -255,7 +255,7 @@ int min(int* arr, int n, int lft, int rght, int& index) {
 	return value;
 }
 
-/* минимум в массиве типа lclmin; критерий: lclmin.value */
+/* Г¬ГЁГ­ГЁГ¬ГіГ¬ Гў Г¬Г Г±Г±ГЁГўГҐ ГІГЁГЇГ  lclmin; ГЄГ°ГЁГІГҐГ°ГЁГ©: lclmin.value */
 void min(lclmin* arr, int n, int& index) {
 	int val = arr[0].value;
 	index = 0;
@@ -267,7 +267,7 @@ void min(lclmin* arr, int n, int& index) {
 	}
 }
 
-/* сортировка квадратичным выбором */ // O(n^(3 / 2))
+/* Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЄГўГ Г¤Г°Г ГІГЁГ·Г­Г»Г¬ ГўГ»ГЎГ®Г°Г®Г¬ */ // O(n^(3 / 2))
 void sqminSort(int* arr, int n) {
 	int p = Isqrt(n);
 	int q = p * p == n ? p : p + 1;
@@ -301,7 +301,7 @@ void sqminSort(int* arr, int n) {
 	delete[] sorted;
 }
 
-/* слияние массивов */
+/* Г±Г«ГЁГїГ­ГЁГҐ Г¬Г Г±Г±ГЁГўГ®Гў */
 void merge(int* a, int n, int* b, int m, int* c) {
 	int i = 0, j = 0, k = 0;
 	while (i < n && j < m) {
@@ -322,7 +322,7 @@ void merge(int* a, int n, int* b, int m, int* c) {
 	}
 }
 
-/* сортировка слиянием */ // O(n* log(n))
+/* Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  Г±Г«ГЁГїГ­ГЁГҐГ¬ */ // O(n* log(n))
 void mergeSort(int* arr, int lft, int rght) {
 	if (lft >= rght) return;
 
@@ -338,7 +338,7 @@ void mergeSort(int* arr, int lft, int rght) {
 	printIntArr(arr, ARR_SIZE);
 }
 
-/* сортировка естественным двухпутевым слиянием */ // O(n* log(n))
+/* Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГҐГ±ГІГҐГ±ГІГўГҐГ­Г­Г»Г¬ Г¤ГўГіГµГЇГіГІГҐГўГ»Г¬ Г±Г«ГЁГїГ­ГЁГҐГ¬ */ // O(n* log(n))
 void nat2MergeSort(int* arr, int n) {
 	int f = 0, k, i, j;
 	int* b = new int[n];
@@ -385,7 +385,7 @@ int main() {
 	printSorts();
 
 	while (cycle) {
-		printf("номер операции: "); scanf_s("%d", &nSort);
+		printf("Г­Г®Г¬ГҐГ° Г®ГЇГҐГ°Г Г¶ГЁГЁ: "); scanf_s("%d", &nSort);
 		printf("\n");
 
 		switch (nSort) {
@@ -507,3 +507,4 @@ int main() {
 	
 }
 */
+//
