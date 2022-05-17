@@ -1,22 +1,22 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include "funks_header.h"
 #include <clocale>
 
 void printSearches() {
-	printf("1. линейный поиск\n");
-	printf("2. оптимизированный линейный поиск\n");
-	printf("3. блоковый поиск\n");
-	printf("4. двоичный поиск\n");
-	printf("5. фибоначчиев поиск\n");
-	printf("6. интреполяционный поиск\n");
-	printf("7. выход\n");
+	printf("1. Р»РёРЅРµР№РЅС‹Р№ РїРѕРёСЃРє\n");
+	printf("2. РѕРїС‚РёРјРёР·РёСЂРѕРІР°РЅРЅС‹Р№ Р»РёРЅРµР№РЅС‹Р№ РїРѕРёСЃРє\n");
+	printf("3. Р±Р»РѕРєРѕРІС‹Р№ РїРѕРёСЃРє\n");
+	printf("4. РґРІРѕРёС‡РЅС‹Р№ РїРѕРёСЃРє\n");
+	printf("5. С„РёР±РѕРЅР°С‡С‡РёРµРІ РїРѕРёСЃРє\n");
+	printf("6. РёРЅС‚СЂРµРїРѕР»СЏС†РёРѕРЅРЅС‹Р№ РїРѕРёСЃРє\n");
+	printf("7. РІС‹С…РѕРґ\n");
 }
 
 void printPos(int* arr, int pos) {
 	printf("%d : %d\n", pos, arr[pos]);
 }
 
-/* линенйный поиск */ // O(n)
+/* Р»РёРЅРµРЅР№РЅС‹Р№ РїРѕРёСЃРє */ // O(n)
 int linSearch(int* arr, int n, int x) {
 	for (int i = 0; i < n; i++) {
 		printPos(arr, i);
@@ -27,7 +27,7 @@ int linSearch(int* arr, int n, int x) {
 	return -1;
 }
 
-/* оптимизированный линейный поиск для отсортированного массива */ // O(n)
+/* РѕРїС‚РёРјРёР·РёСЂРѕРІР°РЅРЅС‹Р№ Р»РёРЅРµР№РЅС‹Р№ РїРѕРёСЃРє РґР»СЏ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅРѕРіРѕ РјР°СЃСЃРёРІР° */ // O(n)
 int linSearch_s(int* sorted_arr, int n, int x) {
 	int i;
 	for (i = 0; sorted_arr[i] < x && i < n - 1; i++) {
@@ -38,12 +38,12 @@ int linSearch_s(int* sorted_arr, int n, int x) {
 	return sorted_arr[i] == x ? i : -1;
 }
 
-/* минимум из двух чисел */
+/* РјРёРЅРёРјСѓРј РёР· РґРІСѓС… С‡РёСЃРµР» */
 int min(int a, int b) {
 	return a < b ? a : b;
 }
 
-/* блоковый поиск */ // O(n ^ (1 / 2))
+/* Р±Р»РѕРєРѕРІС‹Р№ РїРѕРёСЃРє */ // O(n ^ (1 / 2))
 int blockSearch(int* sorted_arr, int n, int x) {
 	int p = Isqrt(n);
 	int lft = 0, rght = p - 1;
@@ -68,7 +68,7 @@ int blockSearch(int* sorted_arr, int n, int x) {
 	return sorted_arr[lft] == x ? lft : -1;
 }
 
-/* двоичный поиск */ // O(log(n))
+/* РґРІРѕРёС‡РЅС‹Р№ РїРѕРёСЃРє */ // O(log(n))
 int binSearch(int* sorted_arr, int n, int x) {
 	int lft = 0, rght = n - 1, mid;
 	while (lft <= rght) {
@@ -90,7 +90,7 @@ int binSearch(int* sorted_arr, int n, int x) {
 	return -1;
 }
 
-/* фибоначчиев поиск */ // O(log(n))
+/* С„РёР±РѕРЅР°С‡С‡РёРµРІ РїРѕРёСЃРє */ // O(log(n))
 int fibSearch(int* sorted_arr, int n, int x) {
 	int start = -1, i;
 
@@ -126,7 +126,7 @@ int fibSearch(int* sorted_arr, int n, int x) {
 	return -1;
 }	
 
-/* интерполяционный поиск */ // O(n)
+/* РёРЅС‚РµСЂРїРѕР»СЏС†РёРѕРЅРЅС‹Р№ РїРѕРёСЃРє */ // O(n)
 int interSearch(int* sorted_arr, int n, int x) {
 	int lft = 0, rght = n - 1, mid;
 	while (lft <= rght) {
@@ -167,8 +167,8 @@ int main() {
 	bool cycle = true;
 	int nSearch, x;
 	while (cycle) {
-		printf("элемент для поиска: "); scanf_s("%d", &x);
-		printf("номер операции: "); scanf_s("%d", &nSearch);
+		printf("СЌР»РµРјРµРЅС‚ РґР»СЏ РїРѕРёСЃРєР°: "); scanf_s("%d", &x);
+		printf("РЅРѕРјРµСЂ РѕРїРµСЂР°С†РёРё: "); scanf_s("%d", &nSearch);
 
 		switch (nSearch) {
 		case 1: {

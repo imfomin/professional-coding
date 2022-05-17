@@ -1,11 +1,11 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <string.h>
 #include "const.h"
 
-/* создание файла + запись строк в файл;
-признак конца записи - "***" */
+/* СЃРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р° + Р·Р°РїРёСЃСЊ СЃС‚СЂРѕРє РІ С„Р°Р№Р»;
+РїСЂРёР·РЅР°Рє РєРѕРЅС†Р° Р·Р°РїРёСЃРё - "***" */
 int createFile(char* fname) {
 	char str[STRING_SIZE];
 	FILE* f;
@@ -27,7 +27,7 @@ int createFile(char* fname) {
 	return 0;
 }
 
-/* печать файла */
+/* РїРµС‡Р°С‚СЊ С„Р°Р№Р»Р° */
 int printFile(char* fname) {
 	char str[STRING_SIZE];
 	FILE* f;
@@ -49,8 +49,8 @@ int printFile(char* fname) {
 	return 0;
 }
 
-/* чтение файла;
-возвращает строку, содержащую текст файла с заменой \n на пробел */
+/* С‡С‚РµРЅРёРµ С„Р°Р№Р»Р°;
+РІРѕР·РІСЂР°С‰Р°РµС‚ СЃС‚СЂРѕРєСѓ, СЃРѕРґРµСЂР¶Р°С‰СѓСЋ С‚РµРєСЃС‚ С„Р°Р№Р»Р° СЃ Р·Р°РјРµРЅРѕР№ \n РЅР° РїСЂРѕР±РµР» */
 char* readFile(const char* fname) {
 	char* text = new char[TEXT_SIZE];
 	*text = 0;
@@ -74,8 +74,8 @@ char* readFile(const char* fname) {
 	return text;
 }
 
-/* ввод с клавиатуры n слов;
-возвращает массив из этих слов */
+/* РІРІРѕРґ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ n СЃР»РѕРІ;
+РІРѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ РёР· СЌС‚РёС… СЃР»РѕРІ */
 char** getwords(int n) {
 	char** words = new char* [n];
 	for (int i = 0; i < n; i++) {
@@ -86,8 +86,8 @@ char** getwords(int n) {
 	return words;
 }
 
-/* поиск слова в массиве pack;
-возвращает адрес первого вхождения или -1, если такого слова нет */
+/* РїРѕРёСЃРє СЃР»РѕРІР° РІ РјР°СЃСЃРёРІРµ pack;
+РІРѕР·РІСЂР°С‰Р°РµС‚ Р°РґСЂРµСЃ РїРµСЂРІРѕРіРѕ РІС…РѕР¶РґРµРЅРёСЏ РёР»Рё -1, РµСЃР»Рё С‚Р°РєРѕРіРѕ СЃР»РѕРІР° РЅРµС‚ */
 int windex(char* word, char** pack, int n) {
 	for (int i = 0; i < n; i++) {
 		if (!strcmp(word, pack[i])) return i;
@@ -96,8 +96,8 @@ int windex(char* word, char** pack, int n) {
 	return -1;
 }
 
-/* возвращает true, если предложение содержит не меньше половины слов из words,
-false иначе */
+/* РІРѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РїСЂРµРґР»РѕР¶РµРЅРёРµ СЃРѕРґРµСЂР¶РёС‚ РЅРµ РјРµРЅСЊС€Рµ РїРѕР»РѕРІРёРЅС‹ СЃР»РѕРІ РёР· words,
+false РёРЅР°С‡Рµ */
 bool chsent(char* sentence, char** words, int n) {
 	char* word = new char[WORD_SIZE];
 	int k = 0, ind, i;
@@ -137,7 +137,7 @@ bool chsent(char* sentence, char** words, int n) {
 	return cnt >= hn;
 }
 
-/* из строки text печатаются только те предложения, где не меньше половины слов из words */
+/* РёР· СЃС‚СЂРѕРєРё text РїРµС‡Р°С‚Р°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ С‚Рµ РїСЂРµРґР»РѕР¶РµРЅРёСЏ, РіРґРµ РЅРµ РјРµРЅСЊС€Рµ РїРѕР»РѕРІРёРЅС‹ СЃР»РѕРІ РёР· words */
 void chtext(char* text, char** words, int n) {
 	char* sent = new char[STRING_SIZE];
 	int k = 0, i;
@@ -168,7 +168,7 @@ int main() {
 }
 */
 
-/*task 2 (индивидуальное)
+/*task 2 (РёРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕРµ)
 int main() {
 	char* text = readFile("6_individ.txt");
 	puts(text);

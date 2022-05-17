@@ -1,13 +1,13 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
-/* ввод массива с клавиатуры */
+/* РІРІРѕРґ РјР°СЃСЃРёРІР° СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ */
 void scanfArr(int* arr, int n) {
 	for (int i = 0; i < n; i++) {
 		scanf_s("%d", &arr[i]);
 	}
 }
 
-/* печать массива */
+/* РїРµС‡Р°С‚СЊ РјР°СЃСЃРёРІР° */
 void printIntArr(int* arr, int arrSize) {
 	for (int i = 0; i < arrSize; i++) {
 		printf("%d ", arr[i]);
@@ -15,7 +15,7 @@ void printIntArr(int* arr, int arrSize) {
 	printf("\n");
 }
 
-/* выделение памяти для матрицы n*m */
+/* РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РґР»СЏ РјР°С‚СЂРёС†С‹ n*m */
 int** newMatrix(int n, int m) {
 	int** matrix = new int* [n];
 	for (int i = 0; i < n; i++){
@@ -25,7 +25,7 @@ int** newMatrix(int n, int m) {
 	return matrix;
 }
 
-/* заполнение целочисленной матрицы с клавиатуры */
+/* Р·Р°РїРѕР»РЅРµРЅРёРµ С†РµР»РѕС‡РёСЃР»РµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ */
 void scanfMatrix(int** matrix, int n, int m) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
@@ -34,7 +34,7 @@ void scanfMatrix(int** matrix, int n, int m) {
 	}
 }
 
-/* печать матрицы */
+/* РїРµС‡Р°С‚СЊ РјР°С‚СЂРёС†С‹ */
 void printMatrix(int** matrix, int n, int m) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
@@ -44,7 +44,7 @@ void printMatrix(int** matrix, int n, int m) {
 	}
 }
 
-/* освобождение памяти матрицы */
+/* РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё РјР°С‚СЂРёС†С‹ */
 void deleteMatrix(int** matrix, int rows) {
 	for (int i = 0; i < rows; i++) {
 		delete[] matrix[i];
@@ -52,7 +52,7 @@ void deleteMatrix(int** matrix, int rows) {
 	delete[] matrix;
 }
 
-/* произведение матриц */
+/* РїСЂРѕРёР·РІРµРґРµРЅРёРµ РјР°С‚СЂРёС† */
 int** prodMatrix(int** nm_Mat, int** mk_Mat, int n, int m, int k) {
 	int** nk_Mat = newMatrix(n, k);
 
@@ -68,7 +68,7 @@ int** prodMatrix(int** nm_Mat, int** mk_Mat, int n, int m, int k) {
 	return nk_Mat;
 }
 
-/* копирование матрицы */
+/* РєРѕРїРёСЂРѕРІР°РЅРёРµ РјР°С‚СЂРёС†С‹ */
 void copyMatrix(int** Destination, int** Source, int n, int m) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
@@ -77,7 +77,7 @@ void copyMatrix(int** Destination, int** Source, int n, int m) {
 	}
 }
 
-/* копирование массива */
+/* РєРѕРїРёСЂРѕРІР°РЅРёРµ РјР°СЃСЃРёРІР° */
 void copyArray(int* Destination, int* Source, int n) {
 	for (int i = 0; i < n; i++) {
 		Destination[i] = Source[i];

@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <string.h>
@@ -9,8 +9,8 @@ struct party {
 	int voices;
 };
 
-/* âîçâðàùàåò ÷èñëî, çàïèñàííîå â ñòðîêå
-(÷èòàåòñÿ òîëüêî ïåðâàÿ ïîñëåäîâàòåëüíîñòü öèôð) */
+/* Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ‡Ð¸ÑÐ»Ð¾, Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ð½Ð¾Ðµ Ð² ÑÑ‚Ñ€Ð¾ÐºÐµ
+(Ñ‡Ð¸Ñ‚Ð°ÐµÑ‚ÑÑ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¿ÐµÑ€Ð²Ð°Ñ Ð¿Ð¾ÑÐ»ÐµÐ´Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ Ñ†Ð¸Ñ„Ñ€) */
 int strToInt(char* str) {
 	int i, res = 0;
 	for (i = 0; str[i] >= '0' && str[i] <= '9'; i++) {
@@ -20,8 +20,8 @@ int strToInt(char* str) {
 	return res;
 }
 
-/* âîçâðàùàåò íîìåð ïàðòèè (ïî èìåíè) â ìàññèâå ïàðòèé
-è -1, åñëè òàêîé íåò */
+/* Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð½Ð¾Ð¼ÐµÑ€ Ð¿Ð°Ñ€Ñ‚Ð¸Ð¸ (Ð¿Ð¾ Ð¸Ð¼ÐµÐ½Ð¸) Ð² Ð¼Ð°ÑÑÐ¸Ð²Ðµ Ð¿Ð°Ñ€Ñ‚Ð¸Ð¹
+Ð¸ -1, ÐµÑÐ»Ð¸ Ñ‚Ð°ÐºÐ¾Ð¹ Ð½ÐµÑ‚ */
 int party_in(char* party_name, party* parties, int n) {
 	for (int i = 0; i < n; i++) {
 		if (!strcmp(parties[i].name, party_name)) return i;
@@ -30,8 +30,8 @@ int party_in(char* party_name, party* parties, int n) {
 	return -1;
 }
 
-/* ôóíêöèÿ ñ÷èòûâàåò ïåðâûå íåñêîëüêî ñòðîê èç ôàéëà è çàïèñûâàåò äàííûå â ìàññèâ ïàðòèé;
-âåä¸òñÿ ïîäñ÷¸ò ãîëîñîâ */
+/* Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ ÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ Ð¿ÐµÑ€Ð²Ñ‹Ðµ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ ÑÑ‚Ñ€Ð¾Ðº Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð° Ð¸ Ð·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð² Ð¼Ð°ÑÑÐ¸Ð² Ð¿Ð°Ñ€Ñ‚Ð¸Ð¹;
+Ð²ÐµÐ´Ñ‘Ñ‚ÑÑ Ð¿Ð¾Ð´ÑÑ‡Ñ‘Ñ‚ Ð³Ð¾Ð»Ð¾ÑÐ¾Ð² */
 int readVotes(party* parties, FILE* votes, int number_of_votes) {
 	char party_name[80];
 	int difParties = 0;
@@ -55,7 +55,7 @@ int readVotes(party* parties, FILE* votes, int number_of_votes) {
 	return difParties;
 }
 
-/* ñîðòèðîâêà ìàññèâà ïàðòèé ïî óáûâàíèþ ãîëîñîâ (ïðîñòûå âñòàâêè )*/
+/* ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° Ð¼Ð°ÑÑÐ¸Ð²Ð° Ð¿Ð°Ñ€Ñ‚Ð¸Ð¹ Ð¿Ð¾ ÑƒÐ±Ñ‹Ð²Ð°Ð½Ð¸ÑŽ Ð³Ð¾Ð»Ð¾ÑÐ¾Ð² (Ð¿Ñ€Ð¾ÑÑ‚Ñ‹Ðµ Ð²ÑÑ‚Ð°Ð²ÐºÐ¸ )*/
 void insSortPatries(party* parties, int n) {
 	party b; int j;
 	for (int i = 1; i < n; i++) {

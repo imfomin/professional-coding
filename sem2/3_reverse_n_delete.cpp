@@ -1,10 +1,10 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <string.h>
 #include "const.h"
 
-/* переворачивает строку */
+/* РїРµСЂРµРІРѕСЂР°С‡РёРІР°РµС‚ СЃС‚СЂРѕРєСѓ */
 char* strobr(char* str) {
 	int len = strlen(str);
 	int hlen = len / 2;
@@ -19,7 +19,7 @@ char* strobr(char* str) {
 	return str;
 }
 
-/* удаляет с указанной позиции (begin) count символов в строке */
+/* СѓРґР°Р»СЏРµС‚ СЃ СѓРєР°Р·Р°РЅРЅРѕР№ РїРѕР·РёС†РёРё (begin) count СЃРёРјРІРѕР»РѕРІ РІ СЃС‚СЂРѕРєРµ */
 char* strdel(char* str, int begin, int count) {
 	int len = strlen(str);
 
@@ -30,7 +30,7 @@ char* strdel(char* str, int begin, int count) {
 	return str;
 }
 
-/* вставляет в origin строку rplmet с указанной позиции (с заменой) */
+/* РІСЃС‚Р°РІР»СЏРµС‚ РІ origin СЃС‚СЂРѕРєСѓ rplmet СЃ СѓРєР°Р·Р°РЅРЅРѕР№ РїРѕР·РёС†РёРё (СЃ Р·Р°РјРµРЅРѕР№) */
 char* strrpl(char* origin, char* rplmnt, int begin) {
 	for (int i = begin, j = 0; rplmnt[j]; i++, j++) {
 		origin[i] = rplmnt[j];
@@ -39,9 +39,9 @@ char* strrpl(char* origin, char* rplmnt, int begin) {
 	return origin;
 }
 
-/* на вход подаётся последовательность слов, разделённых одним или несколькими пробелами;
-слова чётной длины удаляются; нечётной - переворачиваются;
-количество пробелов не меняется */
+/* РЅР° РІС…РѕРґ РїРѕРґР°С‘С‚СЃСЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ СЃР»РѕРІ, СЂР°Р·РґРµР»С‘РЅРЅС‹С… РѕРґРЅРёРј РёР»Рё РЅРµСЃРєРѕР»СЊРєРёРјРё РїСЂРѕР±РµР»Р°РјРё;
+СЃР»РѕРІР° С‡С‘С‚РЅРѕР№ РґР»РёРЅС‹ СѓРґР°Р»СЏСЋС‚СЃСЏ; РЅРµС‡С‘С‚РЅРѕР№ - РїРµСЂРµРІРѕСЂР°С‡РёРІР°СЋС‚СЃСЏ;
+РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР±РµР»РѕРІ РЅРµ РјРµРЅСЏРµС‚СЃСЏ */
 char* f32(char* text) {
 	char word[WORD_SIZE];
 	int k = 0;

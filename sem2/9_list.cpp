@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <clocale>
 
 struct int_unit {
@@ -8,18 +8,18 @@ struct int_unit {
 
 void printLists() {
 	int i = 1;
-	printf("%d создать список\n", i++);
-	printf("%d добавить элемент в конец\n", i++);
-	printf("%d добавить элемент в начало\n", i++);
-	printf("%d добавить элемент в середину\n", i++);
-	printf("%d добавить элемент в отсортированный список\n", i++);
-	printf("%d расширить список\n", i++);
-	printf("%d найти элемент\n", i++);
-	printf("%d удалить элемент\n", i++);
-	printf("%d вставить список\n", i++);
-	printf("%d развернуть список\n", i++);
-	printf("%d напечатать список\n", i++);
-	printf("%d выход\n", i++);
+	printf("%d СЃРѕР·РґР°С‚СЊ СЃРїРёСЃРѕРє\n", i++);
+	printf("%d РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ РІ РєРѕРЅРµС†\n", i++);
+	printf("%d РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ РІ РЅР°С‡Р°Р»Рѕ\n", i++);
+	printf("%d РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ РІ СЃРµСЂРµРґРёРЅСѓ\n", i++);
+	printf("%d РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ РІ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє\n", i++);
+	printf("%d СЂР°СЃС€РёСЂРёС‚СЊ СЃРїРёСЃРѕРє\n", i++);
+	printf("%d РЅР°Р№С‚Рё СЌР»РµРјРµРЅС‚\n", i++);
+	printf("%d СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚\n", i++);
+	printf("%d РІСЃС‚Р°РІРёС‚СЊ СЃРїРёСЃРѕРє\n", i++);
+	printf("%d СЂР°Р·РІРµСЂРЅСѓС‚СЊ СЃРїРёСЃРѕРє\n", i++);
+	printf("%d РЅР°РїРµС‡Р°С‚Р°С‚СЊ СЃРїРёСЃРѕРє\n", i++);
+	printf("%d РІС‹С…РѕРґ\n", i++);
 }
 
 int_unit* init(int n) {
@@ -209,58 +209,58 @@ int main() {
 	printLists();
 
 	while (cycle) {
-		printf("номер операции: ");  scanf_s("%d", &nLists);
+		printf("РЅРѕРјРµСЂ РѕРїРµСЂР°С†РёРё: ");  scanf_s("%d", &nLists);
 
 		switch (nLists) {
 		case 1: {
-			printf("первое значение: ");  scanf_s("%d", &n);
+			printf("РїРµСЂРІРѕРµ Р·РЅР°С‡РµРЅРёРµ: ");  scanf_s("%d", &n);
 			deleteLst(lst);
 			lst = init(n);
 			break;
 		}
 		case 2: {
-			printf("значение: ");  scanf_s("%d", &n);
+			printf("Р·РЅР°С‡РµРЅРёРµ: ");  scanf_s("%d", &n);
 			append(lst, n);
 			break;
 		}
 		case 3: {
-			printf("значение: "); scanf_s("%d", &n);
+			printf("Р·РЅР°С‡РµРЅРёРµ: "); scanf_s("%d", &n);
 			lst = appbeg(lst, n);
 			break;
 		}
 		case 4: {
-			printf("значение: "); scanf_s("%d", &n);
-			printf("значение, после которого вставится первое: "); int pr; scanf_s("%d", &pr);
+			printf("Р·РЅР°С‡РµРЅРёРµ: "); scanf_s("%d", &n);
+			printf("Р·РЅР°С‡РµРЅРёРµ, РїРѕСЃР»Рµ РєРѕС‚РѕСЂРѕРіРѕ РІСЃС‚Р°РІРёС‚СЃСЏ РїРµСЂРІРѕРµ: "); int pr; scanf_s("%d", &pr);
 			insert(lst, pr, n);
 			break;
 		}
 		case 5: {
-			printf("значение: "); scanf_s("%d", &n);
+			printf("Р·РЅР°С‡РµРЅРёРµ: "); scanf_s("%d", &n);
 			insertSorted(lst, n);
 			break;
 		}
 		case 6: {
-			printf("количество значений: "); scanf_s("%d", &n);
+			printf("РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РЅР°С‡РµРЅРёР№: "); scanf_s("%d", &n);
 			scanfLst(lst, n);
 			break;
 		}
 		case 7: {
-			printf("значение: "); scanf_s("%d", &n);
+			printf("Р·РЅР°С‡РµРЅРёРµ: "); scanf_s("%d", &n);
 			printIntLst(search(lst, n));
 			break;
 		}
 		case 8: {
-			printf("значение: "); scanf_s("%d", &n);
+			printf("Р·РЅР°С‡РµРЅРёРµ: "); scanf_s("%d", &n);
 			deleteUnit(lst, n);
 			break;
 		}
 		case 9: {
-			printf("новый список: \n");
+			printf("РЅРѕРІС‹Р№ СЃРїРёСЃРѕРє: \n");
 			scanf_s("%d", &n);
 			int_unit* add = init(n);
 			scanfLst(add, n - 1);
 
-			printf("значение: ");  scanf_s("%d", &n);
+			printf("Р·РЅР°С‡РµРЅРёРµ: ");  scanf_s("%d", &n);
 			insert(lst, n, add);
 
 			break;

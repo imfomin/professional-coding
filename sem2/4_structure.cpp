@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <string.h>
 #include "const.h"
 #include "funks_header.h"
@@ -9,14 +9,14 @@ struct student {
 	int marks[4];
 };
 
-/* удаление пробелов кв конце строки */
+/* СѓРґР°Р»РµРЅРёРµ РїСЂРѕР±РµР»РѕРІ РєРІ РєРѕРЅС†Рµ СЃС‚СЂРѕРєРё */
 char* delSpaceEnd(char* str) {
 	int len = strlen(str);
 	for (int i = len - 1; str[i] == ' '; i--) str[i] = '\0';
 	return str;
 }
 
-/* заполнение массива из n студентов */
+/* Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° РёР· n СЃС‚СѓРґРµРЅС‚РѕРІ */
 void scanfStudent(student* destination, int n) {
 	char rawInput[STRING_SIZE];
 	int j, count;
@@ -42,8 +42,8 @@ void scanfStudent(student* destination, int n) {
 	}
 }
 
-/* возвращает true, если студент получит стипендию,
-иначе false */
+/* РІРѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё СЃС‚СѓРґРµРЅС‚ РїРѕР»СѓС‡РёС‚ СЃС‚РёРїРµРЅРґРёСЋ,
+РёРЅР°С‡Рµ false */
 bool isPaid(student stydent) {
 	for (int i = 0; i < 4; i++) {
 		if (stydent.marks[i] != 4 && stydent.marks[i] != 5) return false;
@@ -52,8 +52,8 @@ bool isPaid(student stydent) {
 	return true;
 }
 
-/* по массиву всех n студентов заполняет массив студентов, претендующих на стипендию;
-возвращает количество таких студентов */
+/* РїРѕ РјР°СЃСЃРёРІСѓ РІСЃРµС… n СЃС‚СѓРґРµРЅС‚РѕРІ Р·Р°РїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ СЃС‚СѓРґРµРЅС‚РѕРІ, РїСЂРµС‚РµРЅРґСѓСЋС‰РёС… РЅР° СЃС‚РёРїРµРЅРґРёСЋ;
+РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ С‚Р°РєРёС… СЃС‚СѓРґРµРЅС‚РѕРІ */
 int findPaidStudents(student* all, student* paid, int n) {
 	int j = 0;
 
